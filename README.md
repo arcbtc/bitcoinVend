@@ -13,6 +13,13 @@ LNURLVend is the next logic step after <a href="https://github.com/arcbtc/LNURLP
 * ESP32 DEV MODULE
 * 12V to 5V Converter USB,3A
 * male/male, female/female, male/female jumper wires
+* Keypad membrane
+* 1.4inch TFT ST7735
+* 12v battery (optional)
+* Wide breadboard (I used x2 normal breadboards stuck together)
+* 4 Channel Relay Module
+* Single relay module
+
 ![vending](https://user-images.githubusercontent.com/33088785/145814575-58988069-48b9-4e1d-8aa2-85be552be4c8.png)
 
 ### Arduino software install
