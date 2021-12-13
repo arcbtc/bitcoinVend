@@ -7,7 +7,7 @@ LNURLVend is the next logic step after <a href="https://github.com/arcbtc/LNURLP
 
 ### Tutorial video
 
-### Hardware
+## Hardware
 ![vendingtronics](https://user-images.githubusercontent.com/33088785/145817489-0223e99f-537b-4852-a8cb-26ceba8d4a5a.png)
 
 * ESP32 DEV MODULE
