@@ -1,7 +1,7 @@
 # LNURLVend
 ## Offline bitcoin vending machine
 
-LNURLVend is the next logic step after <a href="https://github.com/arcbtc/LNURLPoS">LNURLPoS</a>, where you cango to read more about how LNURLPoS works.
+LNURLVend is the next logic step after <a href="https://github.com/arcbtc/LNURLPoS">LNURLPoS</a>, where you can go to read more about how the concepts behind LNURLVend work.
 
 ### Demo video
 
