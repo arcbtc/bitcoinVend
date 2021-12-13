@@ -7,7 +7,12 @@ LNURLVend is the next logic step after <a href="https://github.com/arcbtc/LNURLP
 
 ### Tutorial video
 
-### Hardware layout
+### Hardware
+![vendingtronics](https://user-images.githubusercontent.com/33088785/145817489-0223e99f-537b-4852-a8cb-26ceba8d4a5a.png)
+
+* ESP32 DEV MODULE
+* 12V to 5V Converter USB,3A
+* male/male, female/female, male/female jumper wires
 ![vending](https://user-images.githubusercontent.com/33088785/145814575-58988069-48b9-4e1d-8aa2-85be552be4c8.png)
 
 ### Arduino software install
