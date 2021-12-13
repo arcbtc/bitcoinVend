@@ -21,7 +21,7 @@ LNURLVend is the next logic step after <a href="https://github.com/arcbtc/LNURLP
 * Single relay module
 
 **Keypad membrane GPIO map:** 
-12-> 32, last row GND
+12-> 32, last row (A,B,C,D) GND
 
 **TFT GPIO map:** 
 [VCC - 5V, GND - GND, CS - GPIO5, Reset - GPIO16, AO (DC) - GPI17, SDA (MOSI) - GPIO23, SCK - GPIO18, LED - 3.3V]
