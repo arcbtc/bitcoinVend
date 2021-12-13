@@ -1,9 +1,13 @@
+![image](https://user-images.githubusercontent.com/33088785/145907555-c2d870a7-46aa-419e-a12b-8502c80c0849.png)
+
 # LNURLVend
 ## Offline bitcoin vending machine
 
 LNURLVend is the next logic step after <a href="https://github.com/arcbtc/LNURLPoS">LNURLPoS</a>, where you can go to read more about how the concepts behind LNURLVend work.
 
 ### Demo video
+
+
 
 ### Tutorial video
 
