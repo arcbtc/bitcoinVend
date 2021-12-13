@@ -24,7 +24,7 @@ LNURLVend is the next logic step after <a href="https://github.com/arcbtc/LNURLP
 12-> 32, last row (A,B,C,D) GND
 
 **TFT GPIO map:** 
-[VCC - 5V, GND - GND, CS - GPIO5, Reset - GPIO16, AO (DC) - GPI17, SDA (MOSI) - GPIO23, SCK - GPIO18, LED - 3.3V]
+[VCC - 5V (on the single relay), GND - GND, CS - GPIO5, Reset - GPIO16, AO (DC) - GPI17, SDA (MOSI) - GPIO23, SCK - GPIO18, LED - 3.3V (on the single relay)]
 
 ![vending](https://user-images.githubusercontent.com/33088785/145814575-58988069-48b9-4e1d-8aa2-85be552be4c8.png)
 
