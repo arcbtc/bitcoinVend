@@ -1,4 +1,4 @@
-![image](https://user-images.githubusercontent.com/33088785/145907555-c2d870a7-46aa-419e-a12b-8502c80c0849.png)
+<img style="width:500px" src="https://user-images.githubusercontent.com/33088785/145907555-c2d870a7-46aa-419e-a12b-8502c80c0849.png">
 
 # LNURLVend
 ## Offline bitcoin vending machine
