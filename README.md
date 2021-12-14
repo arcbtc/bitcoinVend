@@ -43,7 +43,7 @@ Coming very soon...
 * Download/install latest <a href="https://www.arduino.cc/en/software">Arduino IDE</a>
 * Install ESP32 boards, using <a href="https://docs.espressif.com/projects/arduino-esp32/en/latest/installing.html#installing-using-boards-manager">boards manager</a>
 * Copy <a href="https://github.com/arcbtc/LNURLPoS/tree/main/LNURLVend/libraries">these libraries</a> into your Arduino IDE library folder
-* Plug in T-Display, from *Tools>Board>ESP32 Boards* select **ESP32 DEV MODULE**
+* Plug in ESP32. From *Tools>Board>ESP32 Boards* select **ESP32 DEV MODULE**
 
 > *Note: You may need to roll your ESP32 boards back to an earlier version in the Arduino IDE, by using tools>boards>boards manager, searching for esp. I use v1.0.5(rc6), and have also used v1.0.4 which worked.*
 ### LNbits extension
