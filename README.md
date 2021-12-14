@@ -7,9 +7,11 @@ LNURLVend is the next logic step after <a href="https://github.com/arcbtc/LNURLP
 
 ### Demo video
 
-
+https://twitter.com/arcbtc/status/1470541850566090757
 
 ### Tutorial video
+
+Coming very soon...
 
 ## Hardware
 
