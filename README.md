@@ -49,7 +49,7 @@ Coming very soon...
 ### LNbits extension
 
 To make things easy (usually a few clicks on things like Raspiblitz), there is an <a href="https://github.com/lnbits/lnbits/tree/master/lnbits/extensions/lnurlpos">LNbits extension</a>.
-If you want to make your own stand-alone server software that would be fairly easy to do, by replicating the lnurl.py file in the extennsion.
+If you want to make your own stand-alone server software that would be fairly easy to do, by replicating the lnurl.py file in the extension.
 
 ### Future updates 
 Looking forward to seeing this same project being used in a range of vending machines, all shapes and sizes.
