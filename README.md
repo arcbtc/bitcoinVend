@@ -11,7 +11,7 @@ https://twitter.com/arcbtc/status/1470541850566090757
 
 ### Tutorial video
 
-<a href="https://www.youtube.com/watch?v=Fg0UuuzsYXc&list=PLPj3KCksGbSYcLQoQbRGAtuHnQ4U4mXeL&index=38" target="_blank" ><img src="https://user-images.githubusercontent.com/33088785/146017455-5cda5ad7-ba7a-490b-8362-919102bde948.png"></a>
+<a href="https://www.youtube.com/watch?v=Fg0UuuzsYXc&list=PLPj3KCksGbSYcLQoQbRGAtuHnQ4U4mXeL&index=38" target="_blank" ><img style="width:500px" src="https://user-images.githubusercontent.com/33088785/146017455-5cda5ad7-ba7a-490b-8362-919102bde948.png"></a>
 
 ## Hardware
 
