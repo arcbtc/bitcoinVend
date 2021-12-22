@@ -3,6 +3,8 @@
 # LNURLVend
 ## Offline bitcoin vending machine
 
+> <i>Join our <a href="https://t.me/makerbits">telegram support/chat</a>.</i>
+
 LNURLVend is the next logic step after <a href="https://github.com/arcbtc/LNURLPoS">LNURLPoS</a> <-- go to that repo to learn more about the concepts behind LNURLVend.
 
 ### Demo video
