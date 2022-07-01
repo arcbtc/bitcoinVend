@@ -9,7 +9,7 @@
 //#include "TFT_eSPI.h"
 #include <Keypad.h>
 #include <string.h>
-#include "qrcode.h"
+#include "qrcoded.h"
 #include "Bitcoin.h"
 #include <Base64.h>
 #include <Hash.h>
@@ -22,19 +22,20 @@
 ////////////////////////////////////////////////////////
 
 //Server details
-String baseURL = "https://legend.lnbits.com/lnurlpos/api/v1/lnurl/Menv6Rx6Cpnd5nXTPdGfTu";
-String key = "kK4QzkxwN2V8iuyocg6VFj";
+String baseURLvend = "https://legend.lnbits.com/lnurldevice/api/v1/lnurl/SGNbktXTGGeKQVnb8RRM8n";
+String secretvend = "UetGFd95UQqi2WSPsJwn2R";
 String currency = "USD";
 
+
 //Products
-String prodOne = "ESP32";
-float prodOneAmount = 0.8;
+String prodOne = "Stamps";
+float prodOneAmount = 0.10;
 
-String prodTwo = "1.4 TFT";
-float prodTwoAmount = 1.2;
+String prodTwo = "Stamps";
+float prodTwoAmount = 0.10;
 
-String prodThree = "Keypad";
-float prodThreeAmount = 0.5;
+String prodThree = "Stamps";
+float prodThreeAmount = 0.10;
 
 ////////////////////////////////////////////////////////
 ////Note: See lines 75, 97, to adjust to keypad size////
@@ -111,8 +112,8 @@ void setup(void) {
 }
 
 void loop() {
-  Serial.println("lnpoo");
-  Serial.println("lnpoo");
+
+
   wakeUpScreen();
   unsigned long check = millis();
   bool cntr = false;
@@ -182,15 +183,16 @@ void loop() {
     }
     if(inputs.length() == 4 && inputs.toInt() == randomPin){
       if(selection == "1"){
-        digitalWrite(15, HIGH);
-        delay(2500);
-        digitalWrite(15, LOW);
-        cntr = true;
-      }
-      if(selection == "2"){
+
         digitalWrite(2, HIGH);
         delay(2500);
         digitalWrite(2, LOW);
+        cntr = true;
+      }
+      if(selection == "2"){
+        digitalWrite(15, HIGH);
+        delay(2500);
+        digitalWrite(15, LOW);
         cntr = true;
       }
       if(selection == "3"){
@@ -247,25 +249,29 @@ void wakeUpScreen(){
   delay(2000);
 }
 
-void qrShowCode(){
+void qrShowCode()
+{
   tft.fillScreen(TFT_WHITE);
   lnurl.toUpperCase();
-  const char* lnurlChar = lnurl.c_str();
-  QRCode qrcode;
+  const char *qrDataChar = lnurl.c_str();
+  QRCode qrcoded;
   uint8_t qrcodeData[qrcode_getBufferSize(20)];
-  qrcode_initText(&qrcode, qrcodeData, 6, 0, lnurlChar);
-    for (uint8_t y = 0; y < qrcode.size; y++) {
-
-        // Each horizontal module
-        for (uint8_t x = 0; x < qrcode.size; x++) {
-            if(qrcode_getModule(&qrcode, x, y)){       
-                tft.fillRect(40+2*x, 10+2*y, 2, 2, TFT_BLACK);
-            }
-            else{
-                tft.fillRect(40+2*x, 10+2*y, 2, 2, TFT_WHITE);
-            }
-        }
+  qrcode_initText(&qrcoded, qrcodeData, 6, 0, qrDataChar);
+  for (uint8_t y = 0; y < qrcoded.size; y++)
+  {
+    // Each horizontal module
+    for (uint8_t x = 0; x < qrcoded.size; x++)
+    {
+      if (qrcode_getModule(&qrcoded, x, y))
+      {
+        tft.fillRect(20 + 3 * x, 2 + 3 * y, 3, 3, TFT_BLACK);
+      }
+      else
+      {
+        tft.fillRect(20 + 3 * x, 2 + 3 * y, 3, 3, TFT_WHITE);
+      }
     }
+  }
   tft.setTextColor(TFT_BLACK, TFT_WHITE);
   tft.setFreeFont(TINYFONT);
   tft.setCursor(20, 110);
@@ -284,7 +290,7 @@ void selectProduct()
   tft.setTextColor(TFT_RED, TFT_BLACK);
   tft.print("   " + currency);
   tft.setTextColor(TFT_WHITE, TFT_BLACK);
-  tft.println(String(prodOneAmount));
+  tft.println("0.01");
   tft.setCursor(0, 55);
   tft.setTextColor(TFT_WHITE, TFT_BLACK);
   tft.print("2: ");
@@ -293,7 +299,7 @@ void selectProduct()
   tft.setTextColor(TFT_RED, TFT_BLACK);
   tft.print("   " + currency);
   tft.setTextColor(TFT_WHITE, TFT_BLACK);
-  tft.println(String(prodTwoAmount));
+  tft.println("0.01");
   tft.setCursor(0, 100);
   tft.setTextColor(TFT_WHITE, TFT_BLACK);
   tft.print("3: ");
@@ -302,7 +308,7 @@ void selectProduct()
   tft.setTextColor(TFT_RED, TFT_BLACK);
   tft.print("   " + currency);
   tft.setTextColor(TFT_WHITE, TFT_BLACK);
-  tft.println(String(prodThreeAmount));
+  tft.println("0.01");
 }
 
 void showPin(){
@@ -332,6 +338,7 @@ void logo(){
   tft.setCursor(20,70);
   tft.print("Powered by LNbits");
 }
+  
 
 void gotoSleep(){ 
   touchAttachInterrupt(T5, wakeUpScreen, 20);
@@ -358,9 +365,12 @@ void makeLNURL()
     nonce[i] = random(256);
   }
   byte payload[51]; // 51 bytes is max one can get with xor-encryption
-  size_t payload_len = xor_encrypt(payload, sizeof(payload), (uint8_t *)key.c_str(), key.length(), nonce, sizeof(nonce), randomPin, amount);
-  preparedURL = baseURL + "?p=";
-  preparedURL += toBase64(payload, payload_len, BASE64_URLSAFE | BASE64_NOPADDING);
+
+    size_t payload_len = xor_encrypt(payload, sizeof(payload), (uint8_t *)secretvend.c_str(), secretvend.length(), nonce, sizeof(nonce), randomPin, amount);
+    preparedURL = baseURLvend + "?p=";
+    preparedURL += toBase64(payload, payload_len, BASE64_URLSAFE | BASE64_NOPADDING);
+ 
+
   Serial.println(preparedURL);
   char Buf[200];
   preparedURL.toCharArray(Buf, 200);
@@ -375,17 +385,12 @@ void makeLNURL()
   Serial.println(lnurl);
 }
 
-/*
- * Fills output with nonce, xored payload, and HMAC.
- * XOR is secure for data smaller than the key size (it's basically one-time-pad). For larger data better to use AES.
- * Maximum length of the output in XOR mode is 1+1+nonce_len+1+32+8 = nonce_len+43 = 51 for 8-byte nonce.
- * Payload contains pin, currency byte and amount. Pin and amount are encoded as compact int (varint).
- * Returns number of bytes written to the output, 0 if error occured.
- */
-int xor_encrypt(uint8_t * output, size_t outlen, uint8_t * key, size_t keylen, uint8_t * nonce, size_t nonce_len, uint64_t pin, uint64_t amount_in_cents){
+int xor_encrypt(uint8_t *output, size_t outlen, uint8_t *key, size_t keylen, uint8_t *nonce, size_t nonce_len, uint64_t pin, uint64_t amount_in_cents)
+{
   // check we have space for all the data:
   // <variant_byte><len|nonce><len|payload:{pin}{amount}><hmac>
-  if(outlen < 2 + nonce_len + 1 + lenVarInt(pin) + 1 + lenVarInt(amount_in_cents) + 8){
+  if (outlen < 2 + nonce_len + 1 + lenVarInt(pin) + 1 + lenVarInt(amount_in_cents) + 8)
+  {
     return 0;
   }
   int cur = 0;
@@ -394,15 +399,15 @@ int xor_encrypt(uint8_t * output, size_t outlen, uint8_t * key, size_t keylen, u
   // nonce_len | nonce
   output[cur] = nonce_len;
   cur++;
-  memcpy(output+cur, nonce, nonce_len);
+  memcpy(output + cur, nonce, nonce_len);
   cur += nonce_len;
   // payload, unxored first - <pin><currency byte><amount>
   int payload_len = lenVarInt(pin) + 1 + lenVarInt(amount_in_cents);
   output[cur] = (uint8_t)payload_len;
   cur++;
-  uint8_t * payload = output+cur; // pointer to the start of the payload
-  cur += writeVarInt(pin, output+cur, outlen-cur); // pin code
-  cur += writeVarInt(amount_in_cents, output+cur, outlen-cur); // amount
+  uint8_t *payload = output + cur;                                 // pointer to the start of the payload
+  cur += writeVarInt(pin, output + cur, outlen - cur);             // pin code
+  cur += writeVarInt(amount_in_cents, output + cur, outlen - cur); // amount
   cur++;
   // xor it with round key
   uint8_t hmacresult[32];
@@ -411,7 +416,8 @@ int xor_encrypt(uint8_t * output, size_t outlen, uint8_t * key, size_t keylen, u
   h.write((uint8_t *)"Round secret:", 13);
   h.write(nonce, nonce_len);
   h.endHMAC(hmacresult);
-  for(int i=0; i < payload_len; i++){
+  for (int i = 0; i < payload_len; i++)
+  {
     payload[i] = payload[i] ^ hmacresult[i];
   }
   // add hmac to authenticate
@@ -419,7 +425,7 @@ int xor_encrypt(uint8_t * output, size_t outlen, uint8_t * key, size_t keylen, u
   h.write((uint8_t *)"Data:", 5);
   h.write(output, cur);
   h.endHMAC(hmacresult);
-  memcpy(output+cur, hmacresult, 8);
+  memcpy(output + cur, hmacresult, 8);
   cur += 8;
   // return number of bytes written to the output
   return cur;
