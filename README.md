@@ -2,12 +2,12 @@
 ![image](https://user-images.githubusercontent.com/33088785/176948767-a484ee2d-60f2-493b-8930-968492070805.png)
 
 
-# LNURLVend
+# bitcoinVend
 ## Offline bitcoin vending machine
 
 > <i>Join our <a href="https://t.me/makerbits">telegram support/chat</a>.</i>
 
-LNURLVend is the next logic step after <a href="https://github.com/arcbtc/LNURLPoS">LNURLPoS</a> <-- go to that repo to learn more about the concepts behind LNURLVend.
+bitcoinVend is the next logic step after <a href="https://github.com/arcbtc/LNURLPoS">LNURLPoS</a> <-- go to that repo to learn more about the concepts behind bitcoinVend.
 
 ### Demo video
 
