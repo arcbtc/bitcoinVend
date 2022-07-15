@@ -58,9 +58,9 @@ String qrData;
 String dataId;
 String addressNo;
 String pinToShow;
-String lnurlVendProdNames[] = {"", "", "", "", "", "", "", "", ""};
-String lnurlVendProdAmounts[] = {"", "", "", "", "", "", "", "", ""};
-String lnurlVendProdPins[] = {"", "", "", "", "", "", "", "", ""};
+String bitcoinVendProdNames[] = {"", "", "", "", "", "", "", "", ""};
+String bitcoinVendProdAmounts[] = {"", "", "", "", "", "", "", "", ""};
+String bitcoinVendProdPins[] = {"", "", "", "", "", "", "", "", ""};
 String selection;
 String virtkey;
 int menuItemNo = 0;
@@ -68,7 +68,7 @@ int randomPin;
 int calNum = 1;
 int sumFlag = 0;
 int converted = 0;
-int lnurlVendTime = 0;
+int bitcoinVendTime = 0;
 int amount = 0;
 String key_val;
 bool onchainCheck = false;
@@ -99,66 +99,66 @@ static const char PAGE_ELEMENTS[] PROGMEM = R"(
       "value": "ToTheMoon1"
     },
     {
-      "name": "lnurlvendpos",
+      "name": "bitcoinvendpos",
       "type": "ACInput",
       "label": "LNURLPoS string from LNbits extension"
     },
     {
-      "name": "lnurlvendmotortime",
+      "name": "bitcoinvendmotortime",
       "type": "ACInput",
       "label": "Motor time millisecs",
       "vale": "2500"
     },
     {
-      "name": "lnurlvendprodone",
+      "name": "bitcoinvendprodone",
       "type": "ACInput",
       "label": "Product One",
       "value": "sweets,0.10,2"
     },
      {
-      "name": "lnurlvendprodtwo",
+      "name": "bitcoinvendprodtwo",
       "type": "ACInput",
       "label": "Product Two",
       "value": ""
     },
      {
-      "name": "lnurlvendprodthree",
+      "name": "bitcoinvendprodthree",
       "type": "ACInput",
       "label": "Product Three",
       "value": ""
     },
      {
-      "name": "lnurlvendprodfour",
+      "name": "bitcoinvendprodfour",
       "type": "ACInput",
       "label": "Product Four",
       "value": ""
     },
      {
-      "name": "lnurlvendprodfive",
+      "name": "bitcoinvendprodfive",
       "type": "ACInput",
       "label": "Product Five",
       "value": ""
     },
      {
-      "name": "lnurlvendprodsix",
+      "name": "bitcoinvendprodsix",
       "type": "ACInput",
       "label": "Product Six",
       "value": ""
     },
      {
-      "name": "lnurlvendprodseven",
+      "name": "bitcoinvendprodseven",
       "type": "ACInput",
       "label": "Product Seven",
       "value": ""
     },
      {
-      "name": "lnurlvendprodeight",
+      "name": "bitcoinvendprodeight",
       "type": "ACInput",
       "label": "Product Eight",
       "value": ""
     },
      {
-      "name": "lnurlvendprodnine",
+      "name": "bitcoinvendprodnine",
       "type": "ACInput",
       "label": "Product Nine",
       "value": ""
@@ -276,104 +276,104 @@ void setup()
     }
 
     const JsonObject lnurlVRoot = doc[1];
-    const char *lnurlvendChar = lnurlVRoot["value"];
-    String lnurlvend = lnurlvendChar;
-    baseURLvend = getValue(lnurlvend, ',', 0);
-    secretvend = getValue(lnurlvend, ',', 1);
-    currencyvend = getValue(lnurlvend, ',', 2);
+    const char *bitcoinvendChar = lnurlVRoot["value"];
+    String bitcoinvend = bitcoinvendChar;
+    baseURLvend = getValue(bitcoinvend, ',', 0);
+    secretvend = getValue(bitcoinvend, ',', 1);
+    currencyvend = getValue(bitcoinvend, ',', 2);
 
     const JsonObject lnurlVTime = doc[2];
-    const char *lnurlvendCharTime = lnurlVTime["value"];
-    lnurlVendTime = String(lnurlvendCharTime).toInt();
+    const char *bitcoinvendCharTime = lnurlVTime["value"];
+    bitcoinVendTime = String(bitcoinvendCharTime).toInt();
     
     if(doc[3] != ""){
       const JsonObject lnurlVOne = doc[3];
-      const char *lnurlVendProdOneChar = lnurlVOne["value"];
-      String lnurlVendProdOneStr = lnurlVendProdOneChar;
-      lnurlVendProdNames[0] = getValue(lnurlVendProdOneStr, ',', 0);
-      lnurlVendProdAmounts[0] = getValue(lnurlVendProdOneStr, ',', 1);
-      lnurlVendProdPins[0] = getValue(lnurlVendProdOneStr, ',', 2);
-      pinMode(lnurlVendProdPins[0].toInt(), OUTPUT); 
+      const char *bitcoinVendProdOneChar = lnurlVOne["value"];
+      String bitcoinVendProdOneStr = bitcoinVendProdOneChar;
+      bitcoinVendProdNames[0] = getValue(bitcoinVendProdOneStr, ',', 0);
+      bitcoinVendProdAmounts[0] = getValue(bitcoinVendProdOneStr, ',', 1);
+      bitcoinVendProdPins[0] = getValue(bitcoinVendProdOneStr, ',', 2);
+      pinMode(bitcoinVendProdPins[0].toInt(), OUTPUT); 
     }
 
     if(doc[4] != ""){
       const JsonObject lnurlVTwo = doc[4];
-      const char *lnurlVendProdTwoChar = lnurlVTwo["value"];
-      String lnurlVendProdTwoStr = lnurlVendProdTwoChar;
-      lnurlVendProdNames[1] = getValue(lnurlVendProdTwoStr, ',', 0);
-      lnurlVendProdAmounts[1] = getValue(lnurlVendProdTwoStr, ',', 1);
-      lnurlVendProdPins[1] = getValue(lnurlVendProdTwoStr, ',', 2);
-      pinMode(lnurlVendProdPins[1].toInt(), OUTPUT); 
+      const char *bitcoinVendProdTwoChar = lnurlVTwo["value"];
+      String bitcoinVendProdTwoStr = bitcoinVendProdTwoChar;
+      bitcoinVendProdNames[1] = getValue(bitcoinVendProdTwoStr, ',', 0);
+      bitcoinVendProdAmounts[1] = getValue(bitcoinVendProdTwoStr, ',', 1);
+      bitcoinVendProdPins[1] = getValue(bitcoinVendProdTwoStr, ',', 2);
+      pinMode(bitcoinVendProdPins[1].toInt(), OUTPUT); 
     }
 
     if(doc[5] != ""){
       const JsonObject lnurlVThree = doc[5];
-      const char *lnurlVendProdThreeChar = lnurlVThree["value"];
-      String lnurlVendProdThreeStr = lnurlVendProdThreeChar;
-      lnurlVendProdNames[2] = getValue(lnurlVendProdThreeStr, ',', 0);
-      lnurlVendProdAmounts[2] = getValue(lnurlVendProdThreeStr, ',', 1);
-      lnurlVendProdPins[2] = getValue(lnurlVendProdThreeStr, ',', 2);
-      pinMode(lnurlVendProdPins[2].toInt(), OUTPUT); 
+      const char *bitcoinVendProdThreeChar = lnurlVThree["value"];
+      String bitcoinVendProdThreeStr = bitcoinVendProdThreeChar;
+      bitcoinVendProdNames[2] = getValue(bitcoinVendProdThreeStr, ',', 0);
+      bitcoinVendProdAmounts[2] = getValue(bitcoinVendProdThreeStr, ',', 1);
+      bitcoinVendProdPins[2] = getValue(bitcoinVendProdThreeStr, ',', 2);
+      pinMode(bitcoinVendProdPins[2].toInt(), OUTPUT); 
     }
 
     if(doc[6] != ""){
       const JsonObject lnurlVFour = doc[6];
-      const char *lnurlVendProdFourChar = lnurlVFour["value"];
-      String lnurlVendProdFourStr = lnurlVendProdFourChar;
-      lnurlVendProdNames[3] = getValue(lnurlVendProdFourStr, ',', 0);
-      lnurlVendProdAmounts[3] = getValue(lnurlVendProdFourStr, ',', 1);
-      lnurlVendProdPins[3] = getValue(lnurlVendProdFourStr, ',', 2);
-      pinMode(lnurlVendProdPins[3].toInt(), OUTPUT); 
+      const char *bitcoinVendProdFourChar = lnurlVFour["value"];
+      String bitcoinVendProdFourStr = bitcoinVendProdFourChar;
+      bitcoinVendProdNames[3] = getValue(bitcoinVendProdFourStr, ',', 0);
+      bitcoinVendProdAmounts[3] = getValue(bitcoinVendProdFourStr, ',', 1);
+      bitcoinVendProdPins[3] = getValue(bitcoinVendProdFourStr, ',', 2);
+      pinMode(bitcoinVendProdPins[3].toInt(), OUTPUT); 
     }
 
     if(doc[7] != ""){
       const JsonObject lnurlVFive = doc[7];
-      const char *lnurlVendProdFiveChar = lnurlVFive["value"];
-      String lnurlVendProdFiveStr = lnurlVendProdFiveChar;
-      lnurlVendProdNames[4] = getValue(lnurlVendProdFiveStr, ',', 0);
-      lnurlVendProdAmounts[4] = getValue(lnurlVendProdFiveStr, ',', 1);
-      lnurlVendProdPins[4] = getValue(lnurlVendProdFiveStr, ',', 2);
-      pinMode(lnurlVendProdPins[4].toInt(), OUTPUT); 
+      const char *bitcoinVendProdFiveChar = lnurlVFive["value"];
+      String bitcoinVendProdFiveStr = bitcoinVendProdFiveChar;
+      bitcoinVendProdNames[4] = getValue(bitcoinVendProdFiveStr, ',', 0);
+      bitcoinVendProdAmounts[4] = getValue(bitcoinVendProdFiveStr, ',', 1);
+      bitcoinVendProdPins[4] = getValue(bitcoinVendProdFiveStr, ',', 2);
+      pinMode(bitcoinVendProdPins[4].toInt(), OUTPUT); 
     }
 
     if(doc[8] != ""){
       const JsonObject lnurlVSix = doc[8];
-      const char *lnurlVendProdSixChar = lnurlVSix["value"];
-      String lnurlVendProdSixStr = lnurlVendProdSixChar;
-      lnurlVendProdNames[5] = getValue(lnurlVendProdSixStr, ',', 0);
-      lnurlVendProdAmounts[5] = getValue(lnurlVendProdSixStr, ',', 1);
-      lnurlVendProdPins[5] = getValue(lnurlVendProdSixStr, ',', 2);
-      pinMode(lnurlVendProdPins[5].toInt(), OUTPUT); 
+      const char *bitcoinVendProdSixChar = lnurlVSix["value"];
+      String bitcoinVendProdSixStr = bitcoinVendProdSixChar;
+      bitcoinVendProdNames[5] = getValue(bitcoinVendProdSixStr, ',', 0);
+      bitcoinVendProdAmounts[5] = getValue(bitcoinVendProdSixStr, ',', 1);
+      bitcoinVendProdPins[5] = getValue(bitcoinVendProdSixStr, ',', 2);
+      pinMode(bitcoinVendProdPins[5].toInt(), OUTPUT); 
     }
 
     if(doc[9] != ""){
       const JsonObject lnurlVSeven = doc[9];
-      const char *lnurlVendProdSevenChar = lnurlVSeven["value"];
-      String lnurlVendProdSevenStr = lnurlVendProdSevenChar;
-      lnurlVendProdNames[6] = getValue(lnurlVendProdSevenStr, ',', 0);
-      lnurlVendProdAmounts[6] = getValue(lnurlVendProdSevenStr, ',', 1);
-      lnurlVendProdPins[6] = getValue(lnurlVendProdSevenStr, ',', 2);
-      pinMode(lnurlVendProdPins[6].toInt(), OUTPUT); 
+      const char *bitcoinVendProdSevenChar = lnurlVSeven["value"];
+      String bitcoinVendProdSevenStr = bitcoinVendProdSevenChar;
+      bitcoinVendProdNames[6] = getValue(bitcoinVendProdSevenStr, ',', 0);
+      bitcoinVendProdAmounts[6] = getValue(bitcoinVendProdSevenStr, ',', 1);
+      bitcoinVendProdPins[6] = getValue(bitcoinVendProdSevenStr, ',', 2);
+      pinMode(bitcoinVendProdPins[6].toInt(), OUTPUT); 
     }
 
     if(doc[10] != ""){
       const JsonObject lnurlVEight = doc[10];
-      const char *lnurlVendProdEightChar = lnurlVEight["value"];
-      String lnurlVendProdEightStr = lnurlVendProdEightChar;
-      lnurlVendProdNames[7] = getValue(lnurlVendProdEightStr, ',', 0);
-      lnurlVendProdAmounts[7] = getValue(lnurlVendProdEightStr, ',', 1);
-      lnurlVendProdPins[7] = getValue(lnurlVendProdEightStr, ',', 2);
-      pinMode(lnurlVendProdPins[7].toInt(), OUTPUT); 
+      const char *bitcoinVendProdEightChar = lnurlVEight["value"];
+      String bitcoinVendProdEightStr = bitcoinVendProdEightChar;
+      bitcoinVendProdNames[7] = getValue(bitcoinVendProdEightStr, ',', 0);
+      bitcoinVendProdAmounts[7] = getValue(bitcoinVendProdEightStr, ',', 1);
+      bitcoinVendProdPins[7] = getValue(bitcoinVendProdEightStr, ',', 2);
+      pinMode(bitcoinVendProdPins[7].toInt(), OUTPUT); 
     }
 
     if(doc[11] != ""){
       const JsonObject lnurlVNine = doc[11];
-      const char *lnurlVendProdNineChar = lnurlVNine["value"];
-      String lnurlVendProdNineStr = lnurlVendProdNineChar;
-      lnurlVendProdNames[8] = getValue(lnurlVendProdNineStr, ',', 0);
-      lnurlVendProdAmounts[8] = getValue(lnurlVendProdNineStr, ',', 1);
-      lnurlVendProdPins[8] = getValue(lnurlVendProdNineStr, ',', 2);
-      pinMode(lnurlVendProdPins[8].toInt(), OUTPUT); 
+      const char *bitcoinVendProdNineChar = lnurlVNine["value"];
+      String bitcoinVendProdNineStr = bitcoinVendProdNineChar;
+      bitcoinVendProdNames[8] = getValue(bitcoinVendProdNineStr, ',', 0);
+      bitcoinVendProdAmounts[8] = getValue(bitcoinVendProdNineStr, ',', 1);
+      bitcoinVendProdPins[8] = getValue(bitcoinVendProdNineStr, ',', 2);
+      pinMode(bitcoinVendProdPins[8].toInt(), OUTPUT); 
     }
   }
 
@@ -401,7 +401,7 @@ void setup()
       File param = FlashFS.open(PARAM_FILE, "r");
       if (param)
       {
-        aux.loadElement(param, {"password", "lnurlvendpos", "lnurlvendmotortime", "lnurlvendprodone", "lnurlvendprodtwo", "lnurlvendprodthree", "lnurlvendprodfour", "lnurlvendprodfive", "lnurlvendprodsix", "lnurlvendprodseven", "lnurlvendprodeight", "lnurlvendprodnine"});
+        aux.loadElement(param, {"password", "bitcoinvendpos", "bitcoinvendmotortime", "bitcoinvendprodone", "bitcoinvendprodtwo", "bitcoinvendprodthree", "bitcoinvendprodfour", "bitcoinvendprodfive", "bitcoinvendprodsix", "bitcoinvendprodseven", "bitcoinvendprodeight", "bitcoinvendprodnine"});
         param.close();
       }
 
@@ -410,7 +410,7 @@ void setup()
         File param = FlashFS.open(PARAM_FILE, "r");
         if (param)
         {
-          aux.loadElement(param, {"password", "lnurlvendpos", "lnurlvendmotortime", "lnurlvendprodone", "lnurlvendprodtwo", "lnurlvendprodthree", "lnurlvendprodfour", "lnurlvendprodfive", "lnurlvendprodsix", "lnurlvendprodseven", "lnurlvendprodeight", "lnurlvendprodnine"});
+          aux.loadElement(param, {"password", "bitcoinvendpos", "bitcoinvendmotortime", "bitcoinvendprodone", "bitcoinvendprodtwo", "bitcoinvendprodthree", "bitcoinvendprodfour", "bitcoinvendprodfive", "bitcoinvendprodsix", "bitcoinvendprodseven", "bitcoinvendprodeight", "bitcoinvendprodnine"});
           param.close();
         }
       }
@@ -425,7 +425,7 @@ void setup()
       if (param)
       {
         // save as a loadable set for parameters.
-        elementsAux.saveElement(param, {"password", "lnurlvendpos", "lnurlvendmotortime", "lnurlvendprodone", "lnurlvendprodtwo", "lnurlvendprodthree", "lnurlvendprodfour", "lnurlvendprodfive", "lnurlvendprodsix", "lnurlvendprodseven", "lnurlvendprodeight", "lnurlvendprodnine"});
+        elementsAux.saveElement(param, {"password", "bitcoinvendpos", "bitcoinvendmotortime", "bitcoinvendprodone", "bitcoinvendprodtwo", "bitcoinvendprodthree", "bitcoinvendprodfour", "bitcoinvendprodfive", "bitcoinvendprodsix", "bitcoinvendprodseven", "bitcoinvendprodeight", "bitcoinvendprodnine"});
         param.close();
 
         // read the saved elements again to display.
@@ -477,11 +477,11 @@ void loop() {
      char key = keypad.getKey();
      if (key != NO_KEY){
        virtkey = String(key);
-       for (int i = 0; i < sizeof(lnurlVendProdNames); i++){
-         if (lnurlVendProdNames[i] != ""){
+       for (int i = 0; i < sizeof(bitcoinVendProdNames); i++){
+         if (bitcoinVendProdNames[i] != ""){
            if (virtkey == String(i+1)){
              selection = virtkey;
-             amount = lnurlVendProdAmounts[i].toFloat() * 100;
+             amount = bitcoinVendProdAmounts[i].toFloat() * 100;
              makeLNURL();
              qrShowCode();
              inputs = "";
@@ -507,9 +507,9 @@ void loop() {
                }
                if(inputs.length() == 4 && inputs.toInt() == randomPin){
                  if(selection == String(i+1)){
-                   digitalWrite(lnurlVendProdPins[i].toInt(), HIGH);
-                   delay(lnurlVendTime);
-                   digitalWrite(lnurlVendProdPins[i].toInt(), LOW);
+                   digitalWrite(bitcoinVendProdPins[i].toInt(), HIGH);
+                   delay(bitcoinVendTime);
+                   digitalWrite(bitcoinVendProdPins[i].toInt(), LOW);
                    cntr = true;
                  }
                  tft.fillScreen(TFT_BLACK);
