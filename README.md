@@ -21,7 +21,7 @@ https://twitter.com/arcbtc/status/1470541850566090757
 
 ![145817489-0223e99f-537b-4852-a8cb-26ceba8d4a5a](https://user-images.githubusercontent.com/33088785/145819968-96b2c263-cbf7-4b20-9237-aabe1fec5373.png)
 
-* Vending Machine. I use this excellent <a href="https://www.aliexpress.com/item/1005003681521257.html">vending machine</a> 🤩 (USE THIS PROMO CODE TO SAVE $45 **VSFPCZIIPKTM**)
+* Vending Machine. I use this excellent <a href="https://www.aliexpress.com/item/1005004229759497.html">vending machine</a> 🤩
 * ESP32 DEV MODULE
 * 12V to 5V Converter USB,3A
 * male/male, female/female, male/female jumper wires
